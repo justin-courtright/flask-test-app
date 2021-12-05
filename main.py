@@ -2,8 +2,6 @@ from flask import Flask, session, request, render_template, redirect, url_for, g
 import config.config as config
 import datetime
 
-
-
 # app setup
 app = Flask(__name__)
 # config
@@ -30,5 +28,4 @@ def Home():
 if __name__ == "__main__":
     app.run(debug=app_configuration.debug,
             threaded=app_configuration.threaded,
-            port=app_configuration.port,
-            host=app_configuration.host)
+            ssl_context='adhoc')
