@@ -1,4 +1,4 @@
-from flask import Flask, session, request, render_template, redirect, url_for, g
+from flask import Flask, session, request, render_template, send_file
 import config.config as config
 import datetime
 
@@ -24,6 +24,10 @@ def Home():
     if request.method == 'GET':
         return render_template('Home.html')
 
+
+@app.route('/.well-known/acme-challenge/<filename>')
+def wellknown(filename):           # Letsencrypt certbot-auto
+    return send_file(f'./static/.well-known/acme-challenge/{filename}')
 
 if __name__ == "__main__":
     app.run(debug=app_configuration.debug,
