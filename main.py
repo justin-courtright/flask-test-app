@@ -1,4 +1,4 @@
-from flask import Flask, session, request, render_template, send_file
+from flask import Flask, session, request, render_template, redirect
 import config.config as config
 import datetime
 
@@ -27,7 +27,7 @@ def Home():
 
 @app.route('/.well-known/acme-challenge/<filename>')
 def wellknown(filename):           # Letsencrypt certbot-auto
-    return send_file(f'./static/.well-known/acme-challenge/{filename}')
+    return redirect(f"/static/.well-known/acme-challenge/{filename}")
 
 if __name__ == "__main__":
     app.run(debug=app_configuration.debug,
